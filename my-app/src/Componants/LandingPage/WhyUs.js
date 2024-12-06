@@ -31,7 +31,7 @@ const StyledIconBox = styled(Box)({
 
 function WhyUs() {
   return (
-    <Box sx={{ padding: { xs: 10, md: 17 }, textAlign: 'center' }}>
+    <Box sx={{ padding: { xs: 2, sm: 4,md: 7, lg: 15 }, textAlign: 'center' , paddingRight: {lg: 20} , paddingLeft: {lg: 20}   }}>
       {/* Title Section */}
       <Typography
         variant="h4"
