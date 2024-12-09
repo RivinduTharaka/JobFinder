@@ -39,6 +39,7 @@ to {
       animation: `${fadeIn} 3s ease-in-out`,
       paddingLeft:6,
       paddingRight:6,
+      paddingBottom:6
     }}>
       <Typography variant="h3" gutterBottom sx={{ color: '#014F86' }}>
         Our Premium Services
@@ -56,10 +57,10 @@ to {
         {services.map((service, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
             <Card sx={{
-              backgroundColor: service.color,
+              backgroundColor: 'rgb(0,0,0,0.1)',
               '&:hover': {
                 transform: 'scale(1.05)',
-                boxShadow: `0 6px 20px 0 ${theme.palette.primary.main}`
+              
               },
               transition: 'transform .3s ease-in-out, box-shadow .3s ease-in-out',
               borderRadius: '16px',
@@ -78,13 +79,14 @@ to {
                   marginBottom: 2,
                   '& svg': {
                     fontSize: '3rem',
-                    color: '#fff'
-                  }
+                    color: '#012A4A'
+                  },
+                  
                 }}>
                   {service.icon}
                 </Box>
                 <Typography variant="h6" component="div" align="center" sx={{
-                  fontWeight: 'bold'
+                  fontWeight: 'bold' , color: 'black'
                 }}>
                   {service.title}
                 </Typography>

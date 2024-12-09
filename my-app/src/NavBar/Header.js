@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -20,9 +20,27 @@ import { useTheme } from '@mui/material/styles';
 function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [navColor, setNavColor] = useState('white'); // Default color for navigation links
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg')); // lg = 1024px
+
+  // Handle scrolling to change navigation link color
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setNavColor('black'); // Change to black on scroll
+      } else {
+        setNavColor('white'); // Revert to white when at the top
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -43,10 +61,10 @@ function Header() {
     <AppBar
       position="fixed"
       sx={{
-        background: 'linear-gradient(to right, #012A4A, #013A63, #01497C)', // Updated with palette
-        // boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
+        background: 'rgba(255, 255, 255, 0.1)', // Semi-transparent white background
+        backdropFilter: 'blur(3px)', // Blur effect
+        boxShadow: 'none', // Remove box shadow
       }}
-    
     >
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         {/* Company Logo */}
@@ -55,10 +73,10 @@ function Header() {
           sx={{
             fontWeight: 'bold',
             fontSize: '1.8rem',
-            color: '#A9D6E5', // From palette
+            color: navColor, // Dynamic text color for logo
           }}
         >
-          Job 124 Job
+          JobHub
         </Typography>
 
         {isMobile ? (
@@ -68,7 +86,7 @@ function Header() {
             color="inherit"
             onClick={toggleDrawer(true)}
             sx={{
-              color: '#A9D6E5', // From palette
+              color: navColor, // Match the icon color with the text color dynamically
             }}
           >
             <MenuIcon />
@@ -76,54 +94,59 @@ function Header() {
         ) : (
           // Desktop View Navigation Links
           <Box display="flex" alignItems="center">
-            {['Home', 'Jobs', 'Explore', 'Contact us', 'Store'].map((item) => (
+            {['Home', 'Jobs',  'Contact us'].map((item) => (
               <Button
                 key={item}
-                endIcon={item === 'Jobs' || item === 'Explore' || item === 'Store' ? <ArrowDropDownIcon /> : null}
+                endIcon={item === 'Jobs' ?<ArrowDropDownIcon /> : null}
                 onClick={item === 'Jobs' ? handleMenuOpen : null}
                 sx={{
-                  color: '#A9D6E5', // From palette
+                  color: navColor, // Dynamic text color for navigation links
                   textTransform: 'none',
                   fontWeight: '500',
                   fontSize: '1rem',
                   marginRight: '20px',
                   '&:hover': {
-                    color: '#89C2D9', // From palette
+                    color: navColor === 'white' ? '#89C2D9' : '#555', // Adjust hover color based on state
                   },
                 }}
               >
                 {item}
               </Button>
             ))}
-
             {/* Right Section Buttons */}
             <Button
-              variant="contained"
+              variant="outlined"
               sx={{
-                backgroundColor: '#014F86', // From palette
-                color: '#ffffff',
+                borderColor: navColor,
+                color: navColor,
                 textTransform: 'none',
                 fontWeight: '600',
                 marginRight: '10px',
                 borderRadius: '10px',
                 padding: isMobile ? '4px 12px' : '6px 20px',
                 fontSize: isMobile ? '0.8rem' : '1rem',
-                '&:hover': { backgroundColor: '#2A6F97' }, // From palette
+                '&:hover': {
+                  borderColor: navColor === 'white' ? '#89C2D9' : '#888',
+                  backgroundColor: 'transparent',
+                },
               }}
             >
               RECRUITERS LOGIN
             </Button>
             <Button
-              variant="contained"
+              variant="outlined"
               sx={{
-                backgroundColor: '#61A5C2', // From palette
-                color: '#012A4A', // From palette
+                borderColor: navColor,
+                color: navColor,
                 textTransform: 'none',
                 fontWeight: '600',
                 borderRadius: '10px',
                 padding: isMobile ? '4px 12px' : '6px 20px',
                 fontSize: isMobile ? '0.8rem' : '1rem',
-                '&:hover': { backgroundColor: '#89C2D9' }, // From palette
+                '&:hover': {
+                  borderColor: navColor === 'white' ? '#2A6F97' : '#555',
+                  backgroundColor: 'transparent',
+                },
               }}
             >
               JOB SEEKERS LOGIN
@@ -141,8 +164,8 @@ function Header() {
           }}
           sx={{
             '& .MuiPaper-root': {
-              backgroundColor: '#013A63', // From palette
-              color: '#A9D6E5', // From palette
+              backgroundColor: '#013A63', // Menu background color
+              color: '#A9D6E5', // Text color
             },
           }}
         >
@@ -158,62 +181,73 @@ function Header() {
         onClose={toggleDrawer(false)}
         sx={{
           '& .MuiDrawer-paper': {
-            backgroundColor: '#01497C', // From palette
-            color: '#A9D6E5', // From palette
+            backgroundColor: 'black', // Drawer background color
+            color: 'white', // Text color
             width: '250px',
           },
         }}
       >
         <Box
-          sx={{ width: 250 }}
+          sx={{ width: 250, padding: 2 }}
           role="presentation"
           onClick={toggleDrawer(false)}
           onKeyDown={toggleDrawer(false)}
         >
           <List>
-            {['Home', 'Jobs', 'Explore', 'Contact us', 'Store'].map((text) => (
+            {['Home', 'Jobs', 'Contact us'].map((text) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton>
                   <ListItemText
                     primary={text}
                     primaryTypographyProps={{
-                      style: { color: '#A9D6E5', fontWeight: '500' },
+                      style: { color: navColor, fontWeight: '500' },
                     }}
                   />
                 </ListItemButton>
               </ListItem>
             ))}
           </List>
-          <Box textAlign="center" mt={2}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              marginTop: 2,
+            }}
+          >
             <Button
-              variant="contained"
-              fullWidth
+              variant="outlined"
               sx={{
-                backgroundColor: '#014F86', // From palette
-                color: '#ffffff',
+                borderColor: navColor,
+                color: navColor,
                 textTransform: 'none',
-                fontWeight: '500',
-                borderRadius: '20px',
-                padding: '4px 12px',
-                fontSize: '0.8rem',
-                marginBottom: '10px',
-                '&:hover': { backgroundColor: '#2A6F97' }, // From palette
+                fontWeight: '600',
+                borderRadius: '10px',
+                marginBottom: 2,
+                padding: '6px 20px',
+                fontSize: '1rem',
+                '&:hover': {
+                  borderColor: navColor === 'white' ? '#89C2D9' : '#888',
+                  backgroundColor: 'transparent',
+                },
               }}
             >
               RECRUITERS LOGIN
             </Button>
             <Button
-              variant="contained"
-              fullWidth
+              variant="outlined"
               sx={{
-                backgroundColor: '#61A5C2', // From palette
-                color: '#012A4A', // From palette
+                borderColor: navColor,
+                color: navColor,
                 textTransform: 'none',
-                fontWeight: '500',
-                borderRadius: '20px',
-                padding: '4px 12px',
-                fontSize: '0.8rem',
-                '&:hover': { backgroundColor: '#89C2D9' }, // From palette
+                fontWeight: '600',
+                borderRadius: '10px',
+                padding: '6px 20px',
+                fontSize: '1rem',
+                '&:hover': {
+                  borderColor: navColor === 'white' ? '#2A6F97' : '#555',
+                  backgroundColor: 'transparent',
+                },
               }}
             >
               JOB SEEKERS LOGIN
