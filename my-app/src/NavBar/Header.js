@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useNavigate and useLocation for routing
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -23,26 +23,19 @@ function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [navColor, setNavColor] = useState('white'); // Default color for navigation links
   const navigate = useNavigate(); // Initialize useNavigate for routing
+  const location = useLocation(); // Get current route location
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg')); // lg = 1024px
 
-  // Handle scrolling to change navigation link color
+  // Handle route change to set navbar color for AllJobs component
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setNavColor('black'); // Change to black on scroll
-      } else {
-        setNavColor('white'); // Revert to white when at the top
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    if (location.pathname === '/alljobs') {
+      setNavColor('#5490bf'); // Change color to black for AllJobs route
+    } else {
+      setNavColor('white'); // Revert to white for other routes
+    }
+  }, [location]);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -102,7 +95,9 @@ function Header() {
               <Button
                 key={item}
                 endIcon={item === 'Jobs' ? <ArrowDropDownIcon /> : null}
-                onClick={() => navigate(item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`)} // Handle routing
+                onClick={() =>
+                  navigate(item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`)
+                } // Handle routing
                 sx={{
                   color: navColor, // Dynamic text color for navigation links
                   textTransform: 'none',
@@ -186,7 +181,7 @@ function Header() {
         sx={{
           '& .MuiDrawer-paper': {
             backgroundColor: 'black', // Drawer background color
-            color: 'white', // Text color
+            color: 'rgb(255,255,255)', // Text color
             width: '250px',
           },
         }}
@@ -200,7 +195,13 @@ function Header() {
           <List>
             {['Home', 'Jobs', 'Contact us'].map((text) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton onClick={() => navigate(text === 'Home' ? '/' : `/${text.toLowerCase().replace(/\s+/g, '-')}`)}>
+                <ListItemButton
+                  onClick={() =>
+                    navigate(
+                      text === 'Home' ? '/' : `/${text.toLowerCase().replace(/\s+/g, '-')}`
+                    )
+                  }
+                >
                   <ListItemText
                     primary={text}
                     primaryTypographyProps={{

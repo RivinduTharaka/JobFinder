@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Componants/HomePage'; // Import the Header component
 import JobsFilter from "./Componants/Jobs/JobsFilter";
 import Header from "./NavBar/Header";
+import AllJobs from "./Componants/Jobs/AllJobs";
 
 
 
@@ -16,7 +17,7 @@ function App() {
          
           <Route path="/" element={<Home />} />
           <Route path="/filterjob" element={<JobsFilter />} />
-      
+          <Route path="/alljobs" element={<AllJobs />} />
           
         </Routes>
       </div>

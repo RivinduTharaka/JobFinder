@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Typography, TextField, InputAdornment, Grid, Card, CardContent } from '@mui/material';
+import { Box, Typography, TextField, InputAdornment, Grid, Card, CardContent, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import SearchIcon from '@mui/icons-material/Search';
 import WorkIcon from '@mui/icons-material/Work';
 import ComputerIcon from '@mui/icons-material/Computer';
@@ -29,6 +30,12 @@ const categories = [
 ];
 
 function JobsFilter() {
+  const navigate = useNavigate(); // Initialize the navigation function
+
+  const handleSearchClick = () => {
+    navigate('/alljobs'); // Navigate to the AllJobs page
+  };
+
   return (
     <Box
       sx={{
@@ -79,6 +86,7 @@ function JobsFilter() {
             alignItems: 'center',
             width: { xs: '90%', sm: '60%', lg: '40%' },
             mt: 3,
+            gap: 1, // Add spacing between the text field and the button
           }}
         >
           <TextField
@@ -100,6 +108,21 @@ function JobsFilter() {
               ),
             }}
           />
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#003300',
+              color: 'white',
+              borderRadius: '20px',
+              height: '56px', // Match the height of the text field
+              '&:hover': {
+                backgroundColor: '#005500',
+              },
+            }}
+            onClick={handleSearchClick} // Trigger navigation on button click
+          >
+            Search
+          </Button>
         </Box>
       </Box>
 
