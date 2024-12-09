@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -18,9 +19,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 function Header() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [navColor, setNavColor] = useState('white'); // Default color for navigation links
+  const navigate = useNavigate(); // Initialize useNavigate for routing
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg')); // lg = 1024px
@@ -70,10 +72,12 @@ function Header() {
         {/* Company Logo */}
         <Typography
           variant="h5"
+          onClick={() => navigate('/')} // Navigate to home page when logo is clicked
           sx={{
             fontWeight: 'bold',
             fontSize: '1.8rem',
             color: navColor, // Dynamic text color for logo
+            cursor: 'pointer', // Change cursor to indicate clickability
           }}
         >
           JobHub
@@ -94,11 +98,11 @@ function Header() {
         ) : (
           // Desktop View Navigation Links
           <Box display="flex" alignItems="center">
-            {['Home', 'Jobs',  'Contact us'].map((item) => (
+            {['Home', 'Jobs', 'Contact us'].map((item) => (
               <Button
                 key={item}
-                endIcon={item === 'Jobs' ?<ArrowDropDownIcon /> : null}
-                onClick={item === 'Jobs' ? handleMenuOpen : null}
+                endIcon={item === 'Jobs' ? <ArrowDropDownIcon /> : null}
+                onClick={() => navigate(item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`)} // Handle routing
                 sx={{
                   color: navColor, // Dynamic text color for navigation links
                   textTransform: 'none',
@@ -196,7 +200,7 @@ function Header() {
           <List>
             {['Home', 'Jobs', 'Contact us'].map((text) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={() => navigate(text === 'Home' ? '/' : `/${text.toLowerCase().replace(/\s+/g, '-')}`)}>
                   <ListItemText
                     primary={text}
                     primaryTypographyProps={{

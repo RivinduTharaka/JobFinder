@@ -5,12 +5,13 @@ import LandingPage from './LandingPage/LandingPage';
 import WhyUs from './LandingPage/WhyUs';
 import Services from './LandingPage/Services';
 
+
 function HomePage() {
   return (
     <>
       <Box>
         {/* Header Component */}
-        <Header />
+        {/* <Header /> */}
 
         {/* LandingPage: Fixed Background */}
         <Box

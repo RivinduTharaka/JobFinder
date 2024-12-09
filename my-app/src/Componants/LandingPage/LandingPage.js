@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Box, Typography, Button } from '@mui/material';
 import cmbimg from '../../../src/cmb.jpg';
 
 function LandingPage() {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   return (
     <Box
       sx={{
@@ -69,6 +72,7 @@ function LandingPage() {
           {/* Job Seekers Button */}
           <Button
             variant="contained"
+            onClick={() => navigate('/filterjob')} // Navigate to /filterjob on click
             sx={{
               backgroundColor: '#014F86', // Teal blue color
               color: 'white',
