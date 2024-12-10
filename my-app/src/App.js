@@ -20,7 +20,7 @@ function App() {
           <Route path="/filterjob" element={<JobsFilter />} />
           <Route path="/alljobs" element={<AllJobs />} />
           <Route path="/apply/:jobId" element={<ApplyForm />} />
-          <Route path="/company-jobs/:companyId" element={<Company />} />
+          <Route path="/jobs" element={<Company />} />
           
         </Routes>
       </div>

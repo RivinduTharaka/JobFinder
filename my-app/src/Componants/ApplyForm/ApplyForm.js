@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import {
-  TextField, Button, Radio, RadioGroup, FormControlLabel,
-  FormControl, FormLabel, Select, MenuItem, InputLabel,
-  Typography, Box, Container, Stepper, Step, StepLabel
+    TextField, Button, Radio, RadioGroup, FormControlLabel,
+    FormControl, FormLabel, Select, MenuItem, InputLabel,
+    Typography, Box, Container, Stepper, Step, StepLabel
 } from '@mui/material';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';  // Ensure you have imported useNavigate from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 function ApplyForm() {
-    const navigate = useNavigate(); // Initialize navigate for redirection
+    const navigate = useNavigate();
     const [activeStep, setActiveStep] = useState(0);
     const steps = ['Enter Your Details', 'Answer HR Questions', 'Submit Application'];
 
@@ -170,17 +170,10 @@ function ApplyForm() {
     };
 
     return (
-        <Container  component="main"
-        maxWidth="sm"
-        sx={{
-          mb: 4, 
-          mt: 20,
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.12)', // Adding a subtle box shadow
-          backgroundColor: 'background.paper', // Use the theme's background color for paper
-          borderRadius: '8px', // Optional: add rounded corners
-          p: 3, // Padding inside the container for some spacing around the content
-          overflow: 'hidden' // Ensures the content does not overflow the rounded corners
-        }}>
+        <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 20, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.12)', backgroundColor: 'background.paper', borderRadius: '8px', p: 3, overflow: 'hidden' }}>
+            <Typography variant="h5" component="h2" sx={{ mb: 4, textAlign: 'center' }}>
+                Account Manager - Emerging Enterprise - Southern
+            </Typography>
             <Stepper activeStep={activeStep} alternativeLabel>
                 {steps.map((label) => (
                     <Step key={label}>
