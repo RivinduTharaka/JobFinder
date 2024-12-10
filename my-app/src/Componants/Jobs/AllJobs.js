@@ -20,6 +20,9 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+
+import { useNavigate } from 'react-router-dom'; // Import useNavigate here
+
 // Import images
 import Image1 from '../../cmb.jpg';
 import Image2 from '../../cmb.jpg';
@@ -71,7 +74,15 @@ function AllJobs() {
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedJob, setSelectedJob] = useState(null);
 
-    
+    const navigate = useNavigate();
+
+    const handleApplyNow = (jobId) => {
+        navigate(`/apply/${jobId}`);
+    };
+
+    const handleBrowseJobs = (companyId) => {
+        navigate(`/company-jobs/${companyId}`);
+    };
 
     const handleFilterSelect = (filterType, value) => {
         const newFilters = { ...selectedFilters, [filterType]: value };
@@ -290,12 +301,18 @@ function AllJobs() {
 
                                 {/* Social Media Share */}
                                 <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-                                    <Button variant="contained" color="success" sx={{ textTransform: 'none' }}>
+                                    <Button
+                                        variant="contained"
+                                        color="success"
+                                        sx={{ textTransform: 'none' }}
+                                        onClick={() => selectedJob && handleApplyNow(selectedJob.id)} // Ensure you have jobId accessible
+                                    >
                                         Apply Now
                                     </Button>
                                     <Button
                                         variant="outlined"
                                         sx={{ textTransform: 'none', borderColor: 'green', color: 'green' }}
+                                        onClick={() => selectedJob && handleBrowseJobs(selectedJob.companyId)} // Ensure you have companyId accessible
                                     >
                                         Browse jobs
                                     </Button>
@@ -337,30 +354,30 @@ function AllJobs() {
                                         >
                                             Job details
                                         </Typography>
-                                        <Typography
+                                        {/* <Typography
                                             component="span"
                                             sx={{ fontWeight: 'bold', cursor: 'pointer', color: 'gray' }}
                                         >
                                             Company overview
-                                        </Typography>
+                                        </Typography> */}
                                     </Box>
                                     <Box sx={{ mt: 2 }}>
                                         <Typography variant="h6" fontWeight="bold">
                                             The Job
                                         </Typography>
                                         <ul>
-    {Array.isArray(selectedJob.description) ? (
-        selectedJob.description.map((detail, index) => (
-            <li key={index}>
-                <Typography variant="body2">{detail}</Typography>
-            </li>
-        ))
-    ) : (
-        <Typography variant="body2">
-            {selectedJob.description || "No description available."}
-        </Typography>
-    )}
-</ul>
+                                            {Array.isArray(selectedJob.description) ? (
+                                                selectedJob.description.map((detail, index) => (
+                                                    <li key={index}>
+                                                        <Typography variant="body2">{detail}</Typography>
+                                                    </li>
+                                                ))
+                                            ) : (
+                                                <Typography variant="body2">
+                                                    {selectedJob.description || "No description available."}
+                                                </Typography>
+                                            )}
+                                        </ul>
 
                                     </Box>
                                 </Box>

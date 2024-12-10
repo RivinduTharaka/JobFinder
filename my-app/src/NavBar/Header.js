@@ -30,13 +30,14 @@ function Header() {
 
   // Handle route change to set navbar color for AllJobs component
   useEffect(() => {
-    if (location.pathname === '/alljobs') {
-      setNavColor('#5490bf'); // Change color to black for AllJobs route
-    } else {
-      setNavColor('white'); // Revert to white for other routes
-    }
-  }, [location]);
-
+    if (location.pathname === '/alljobs' || 
+      location.pathname.startsWith('/apply/') || 
+      location.pathname.startsWith('/company-jobs/')) {
+    setNavColor('black');  // Make navbar black
+  } else {
+    setNavColor('white');  // Revert to white for other routes
+  }
+}, [location.pathname]); 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
