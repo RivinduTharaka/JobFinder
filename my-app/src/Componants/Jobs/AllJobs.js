@@ -81,7 +81,7 @@ function AllJobs() {
     };
 
     const handleBrowseJobs = (companyId) => {
-        navigate(`/jobs`);
+        navigate(`/alljobcatagory`);
     };
 
     const handleFilterSelect = (filterType, value) => {

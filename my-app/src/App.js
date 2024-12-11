@@ -6,7 +6,8 @@ import JobsFilter from "./Componants/Jobs/JobsFilter";
 import Header from "./NavBar/Header";
 import AllJobs from "./Componants/Jobs/AllJobs";
 import ApplyForm from "./Componants/ApplyForm/ApplyForm";
-import Company from "./Componants/ApplyForm/Company";
+import AllJobPage from "./Componants/JobTypes/AllJobPage";
+
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           <Route path="/filterjob" element={<JobsFilter />} />
           <Route path="/alljobs" element={<AllJobs />} />
           <Route path="/apply/:jobId" element={<ApplyForm />} />
-          <Route path="/jobs" element={<Company />} />
+          <Route path="/alljobcatagory" element={<AllJobPage />} />
           
         </Routes>
       </div>
