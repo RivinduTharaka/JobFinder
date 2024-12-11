@@ -21,7 +21,7 @@ function App() {
           <Route path="/filterjob" element={<JobsFilter />} />
           <Route path="/alljobs" element={<AllJobs />} />
           <Route path="/apply/:jobId" element={<ApplyForm />} />
-          <Route path="/alljobcatagory" element={<AllJobPage />} />
+          <Route path="/jobs" element={<AllJobPage />} />
           
         </Routes>
       </div>

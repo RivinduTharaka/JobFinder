@@ -65,13 +65,14 @@ function JobsFilter() {
             fontWeight: 'bold',
             color: 'white',
             marginTop: '20px',
-            fontSize: { xs: '1.8rem', md: '3rem' },
+            fontSize: { xs: '1.8rem', md: '2.3rem' },
           }}
         >
           Find your{' '}
           <Typography
             component="span"
             sx={{ fontStyle: 'italic', fontWeight: 'bold', color: '#b8ffb8' }}
+            fontSize= {{ xs: '1.8rem', md: '3.1rem' }}
           >
             dream job
           </Typography>{' '}

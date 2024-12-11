@@ -32,7 +32,7 @@ function Header() {
   useEffect(() => {
     if (location.pathname === '/alljobs' || 
       location.pathname.startsWith('/apply/') || 
-      location.pathname.startsWith('/alljobcatagory') || 
+      location.pathname.startsWith('/jobs') || 
       location.pathname.startsWith('/company-jobs/')) {
     setNavColor('black');  // Make navbar black
   } else {
