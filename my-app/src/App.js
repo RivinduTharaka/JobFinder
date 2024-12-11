@@ -6,7 +6,7 @@ import JobsFilter from "./Componants/Jobs/JobsFilter";
 import Header from "./NavBar/Header";
 import AllJobs from "./Componants/Jobs/AllJobs";
 import ApplyForm from "./Componants/ApplyForm/ApplyForm";
-import AllJobPage from "./Componants/JobTypes/AllJobPage";
+import AllJobPage from "./Componants/JobTypes/Company";
 
 
 
