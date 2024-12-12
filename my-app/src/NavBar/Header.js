@@ -95,24 +95,25 @@ function Header() {
           <Box display="flex" alignItems="center">
             {['Home', 'Jobs', 'Contact us'].map((item) => (
               <Button
-                key={item}
-                endIcon={item === 'Jobs' ? <ArrowDropDownIcon /> : null}
-                onClick={() =>
-                  navigate(item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`)
-                } // Handle routing
-                sx={{
-                  color: navColor, // Dynamic text color for navigation links
-                  textTransform: 'none',
-                  fontWeight: '500',
-                  fontSize: '1rem',
-                  marginRight: '20px',
-                  '&:hover': {
-                    color: navColor === 'white' ? '#89C2D9' : '#555', // Adjust hover color based on state
-                  },
-                }}
-              >
-                {item}
-              </Button>
+              key={item}
+              // Removed the conditional endIcon for the 'Jobs' button
+              onClick={() =>
+                navigate(item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`)
+              } // Handle routing
+              sx={{
+                color: navColor, // Dynamic text color for navigation links
+                textTransform: 'none',
+                fontWeight: '500',
+                fontSize: '1rem',
+                marginRight: '20px',
+                '&:hover': {
+                  color: navColor === 'white' ? '#89C2D9' : '#555', // Adjust hover color based on state
+                },
+              }}
+            >
+              {item}
+            </Button>
+            
             ))}
             {/* Right Section Buttons */}
             <Button
