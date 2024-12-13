@@ -7,6 +7,7 @@ import Header from "./NavBar/Header";
 import AllJobs from "./Componants/Jobs/AllJobs";
 import ApplyForm from "./Componants/ApplyForm/ApplyForm";
 import AllJobPage from "./Componants/JobTypes/Company";
+import ContactUs from "./Componants/ContactUs/ContactUs";
 
 
 
@@ -22,7 +23,8 @@ function App() {
           <Route path="/alljobs" element={<AllJobs />} />
           <Route path="/apply/:jobId" element={<ApplyForm />} />
           <Route path="/jobs" element={<AllJobPage />} />
-          
+          <Route path ="/contact" element={<ContactUs/>} />
+           
         </Routes>
       </div>
     </Router>

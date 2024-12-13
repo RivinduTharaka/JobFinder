@@ -32,6 +32,7 @@ function Header() {
   useEffect(() => {
     if (location.pathname === '/alljobs' || 
       location.pathname.startsWith('/apply/') || 
+      location.pathname.startsWith('/contact') || 
       location.pathname.startsWith('/jobs') || 
       location.pathname.startsWith('/company-jobs/')) {
     setNavColor('black');  // Make navbar black
@@ -93,7 +94,7 @@ function Header() {
         ) : (
           // Desktop View Navigation Links
           <Box display="flex" alignItems="center">
-            {['Home', 'Jobs', 'Contact us'].map((item) => (
+            {['Home', 'Jobs', 'Contact'].map((item) => (
               <Button
               key={item}
               // Removed the conditional endIcon for the 'Jobs' button
