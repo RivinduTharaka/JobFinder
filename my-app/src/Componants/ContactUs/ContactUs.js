@@ -3,9 +3,10 @@ import { Container, Grid, TextField, Button, Checkbox, FormControlLabel, Typogra
 
 function ContactUs() {
   return (
-    <Container maxWidth="lg" style={{ padding: '20px', backgroundColor: 'white' , marginTop:"140px"}}>
+    
+    <Container maxWidth="lg"style={{ backgroundColor: 'rgb(0, 0, 0, 0.0.5)', marginTop: '140px',  }}>
       <Grid container spacing={4}>
-        <Grid item xs={12} md={4} style={{ padding: '20px', borderRight: '2px solid black', backgroundColor:'white' }}>
+        <Grid item xs={12} md={4} style={{ padding: '20px', borderRight: '2px solid black', }}>
           <Typography variant="h4" gutterBottom component="div">Contact Us</Typography>
           <form>
             <TextField fullWidth label="Name" variant="outlined" margin="normal" />
